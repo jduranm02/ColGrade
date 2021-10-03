@@ -1,0 +1,33 @@
+.logo_pagina{
+    margin:0;
+    position: relative;
+    width: 100rem;
+    height:6rem;
+    background-color: rgb(0, 170, 212);
+    font-size: 4rem;
+}
+
+.body{
+    margin:0;
+    padding:0;
+    height: 10rem;
+}
+
+.titulo_principal{
+    position: relative;
+    left:38rem;
+    top:8rem;
+    font-size:2rem;
+}
+
+.formulario{
+    position: relative;
+    width: 10rem;
+    top:10rem;
+    left:38rem;
+    font-size: 1.2rem;
+}
+
+.formulario input{
+    color:red;
+}
