@@ -39,6 +39,9 @@ ALTER TABLE Roles
 ADD COLUMN id_perfiles INTEGER,
 ADD CONSTRAINT FK_Roles_id_perfiles FOREIGN KEY(id_perfiles) REFERENCES Perfiles(id_perfiles);
 
+ALTER TABLE Roles
+DROP COLUMN id_perfiles;
+
 ALTER TABLE Perfiles
 ADD COLUMN id_login INTEGER,
 ADD CONSTRAINT FK_Perfiles_id_login FOREIGN KEY(id_login) REFERENCES Login(id_login);
@@ -71,6 +74,9 @@ CREATE TABLE Perfiles_Mensajes(
     CONSTRAINT FK_Mensajes_id_perfiles FOREIGN KEY(id_perfiles) REFERENCES Perfiles(id_perfiles)
 );
 
+ALTER TABLE Perfiles_Mensajes
+MODIFY id_perfiles_mensajes INTEGER NOT NULL AUTO_INCREMENT;
+
 CREATE TABLE Perfiles_Destinatario_Mensajes(
 	id_destinatario INTEGER NOT NULL,
 	id_perfiles_mensajes INTEGER NOT NULL,
@@ -78,6 +84,8 @@ CREATE TABLE Perfiles_Destinatario_Mensajes(
     CONSTRAINT FK_Destinatario_Perfil FOREIGN KEY(id_destinatario) REFERENCES Perfiles(id_perfiles),
     CONSTRAINT FK_Perfiles_mensajes_PerfilesMensajes FOREIGN KEY(id_perfiles_mensajes) REFERENCES Perfiles_Mensajes(id_perfiles_mensajes)
 );
+
+DROP TABLE perfiles_destinatario_mensajes;
 
 CREATE TABLE Permisos(
 	id_permisos INTEGER NOT NULL AUTO_INCREMENT,
@@ -134,6 +142,60 @@ VALUES
 ("Juan Sebastian","Duran Macias",1,1),
 ("Brayan Andres","Quintero Pinto",2,2),
 ("Jose Daniel","Peña Utria",3,3);
+
+INSERT INTO Roles_Perfiles(id_roles,id_perfiles)
+VALUES
+(1,1),
+(1,2),
+(1,3);
+
+INSERT INTO Cursos(grado)
+VALUES
+("11B"),
+("9C"),
+("5A");
+
+INSERT INTO Materias(nombre_materia)
+VALUES
+("Física"),
+("Matemática"),
+("Castellano");
+
+INSERT INTO Materias_Cursos(id_materias,id_cursos)
+VALUES
+(1,1),
+(2,2),
+(3,3);
+
+INSERT INTO Permisos(nombre_permiso,acceso_permiso,descripcion_permiso)
+VALUES
+("Ver Notas",TRUE,"El rol tiene permitido ver notas"),
+("Editar Notas",FALSE,"El rol tiene permitido editar notas"),
+("Editar Perfil",TRUE,"El rol tiene permidito editar su perfil");
+
+INSERT INTO Roles_Permisos(id_permisos,id_roles)
+VALUES
+(1,1),
+(2,1),
+(3,1);
+
+INSERT INTO Mensajes(asunto,contenido)
+VALUES
+("Exposición de Ciencias Naturales","Hola, quisiera saber si quisieras ser mi grupo para la exposición de ciencias naturales, quedo atento a tu respuesta"),
+("Materiales","Hey recuerda que debes llevar silicona, pegamento y papel bond para mañana");
+
+INSERT INTO Perfiles_Mensajes(id_mensajes,id_perfiles)
+VALUES
+(1,2),
+(2,3);
+
+DELETE FROM Mensajes WHERE id_mensajes=3;
+DELETE FROM Mensajes WHERE id_mensajes=4;
+
+INSERT INTO Perfiles_Destinatario_Mensajes(id_destinatario,id_perfiles_mensajes)
+VALUES
+(1,1),
+(2,2);
 
 
 		
