@@ -1,0 +1,38 @@
+.logo_pagina{
+    margin:0;
+    position: relative;
+    width: 100rem;
+    height:6rem;
+    background-color: rgb(0, 170, 212);
+    font-size: 4rem;
+}
+
+.body{
+    margin:0;
+    padding:0;
+    height: 10rem;
+}
+
+.titulo_principal{
+    position: relative;
+    left:38rem;
+    top:8rem;
+    font-size:2rem;
+}
+
+.seccion_seleccion{
+    position: relative;
+    left:30rem;
+    top:9rem;
+}
+.seccion_notas{
+    position: relative;
+    left:30rem;
+    top:15rem;
+}
+.tabla_notas{
+    border: black 5px solid;
+}
+.tabla_notas th{
+    background:rgb(2, 255, 242);
+}
