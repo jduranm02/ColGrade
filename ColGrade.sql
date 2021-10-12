@@ -197,6 +197,35 @@ VALUES
 (1,1),
 (2,2);
 
+/* Este script sirve para saber un poco más de cada estudiante */
+SELECT Perfiles.id_perfiles,
+	    Perfiles.nombres,
+	    Perfiles.apellidos,
+       Login.usuario,
+       Login.contrasenia,
+       Contacto.email,
+       Contacto.celular,
+       Roles.rol
+        FROM Perfiles
+	LEFT JOIN Login 
+		ON perfiles.id_login=login.id_login
+    LEFT JOIN Contacto 
+		ON perfiles.id_contacto=contacto.id_contacto
+	 LEFT JOIN roles_perfiles
+		ON perfiles.id_perfiles=roles_perfiles.id_perfiles
+	LEFT JOIN roles
+		ON roles.id_roles=1;
+
+/* Este script sirve para saber un poco más de cada rol y su respectivo permiso */
+SELECT Roles.rol,
+       Permisos.nombre_permiso,
+       Permisos.acceso_permiso,
+       Permisos.descripcion_permiso
+FROM Roles 
+LEFT JOIN Roles_Permisos 
+	ON Roles.id_Roles=Roles_Permisos.id_Roles
+LEFT JOIN Permisos
+	ON Permisos.id_Permisos=Roles_Permisos.id_Permisos;
 
 		
 
