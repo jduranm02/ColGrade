@@ -227,6 +227,39 @@ LEFT JOIN Roles_Permisos
 LEFT JOIN Permisos
 	ON Permisos.id_Permisos=Roles_Permisos.id_Permisos;
 
+/* Este script sirve para conocer quien envió el mensaje*/
+SELECT Perfiles_mensajes.id_perfiles as Remitente,
+	   Mensajes.asunto,
+       Mensajes.contenido,
+       Perfiles_destinatario_mensajes.id_destinatario as Destinatario
+FROM Mensajes
+LEFT JOIN Perfiles_Mensajes
+	ON Mensajes.id_mensajes=Perfiles_Mensajes.id_Mensajes
+LEFT JOIN perfiles_destinatario_mensajes
+	ON perfiles_destinatario_mensajes.id_perfiles_mensajes=Perfiles_Mensajes.id_Mensajes
+LEFT JOIN Perfiles
+	ON Perfiles.id_perfiles=Perfiles_destinatario_mensajes.id_destinatario
+    or Perfiles.id_perfiles=Perfiles_mensajes.id_perfiles;
+
+
+/*Para consultar que perfil envió el mensaje*/
+SELECT Perfiles.id_perfiles,
+	   Login.usuario,
+	   Perfiles.nombres,
+	   Perfiles.apellidos,
+       Roles.Rol
+FROM Perfiles
+LEFT JOIN Login
+	ON Perfiles.id_login=Login.id_login
+LEFT JOIN Contacto
+	ON Perfiles.id_contacto=contacto.id_contacto
+LEFT JOIN Roles_Perfiles
+	ON Perfiles.id_perfiles=Roles_Perfiles.id_perfiles
+LEFT JOIN Roles 
+	ON Roles.id_roles=Roles_Perfiles.id_Roles;
+
+
+	
 		
 
 ---------------------------------------------------------------------------------------------------------------------------
